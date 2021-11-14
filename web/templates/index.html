@@ -1,0 +1,427 @@
+{% extends 'patern/main.html' %}
+
+{% block main %}
+{% load static %}
+
+        <!-- Trending Now -->
+        <div class="container">
+            <div class="trending-now">
+                <span class="trending-now__label">
+                    <i class="ui-flash"></i>
+                    خبرهای داغ</span>
+                <div class="newsticker">
+                    <ul class="newsticker__list">
+                        <li class="newsticker__item"><a href="single-post.html" class="newsticker__item-url">گوشی تاشو هواوی میت ایکس در تاریخ مقرر عرضه می‌شود</a></li>
+                        <li class="newsticker__item"><a href="single-post-1.html" class="newsticker__item-url">لنوو Z6 پرو با دوربین چهارگانه و اسنپ‌دراگون ۸۵۵ معرفی شد</a></li>
+                        <li class="newsticker__item"><a href="single-post-3.html" class="newsticker__item-url">سامسونگ مشغول ساخت دو گوشی تاشو جدید است</a></li>
+                    </ul>
+                </div>
+                <div class="newsticker-buttons">
+                    <button class="newsticker-button newsticker-button--next" id="newsticker-button--next" aria-label="previous article"><i class="ui-arrow-left"></i></button>
+                    <button class="newsticker-button newsticker-button--prev" id="newsticker-button--prev" aria-label="next article"><i class="ui-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Posts Grid -->
+        <section class="featured-posts-grid">
+            <div class="container">
+                <div class="row row-8">
+
+                    <div class="col-lg-6">
+                        
+                        <!-- Small post -->
+                        {% for post  in top_one_articles %}
+                        <div class="featured-posts-grid__item featured-posts-grid__item--sm">
+                            
+                            <article class="entry card post-list featured-posts-grid__entry">
+                                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url( {{post.title_photo }})">
+                                    <a href="single-post" class="thumb-url"></a>
+                                    <img src="{{post.title_photo}}" alt="" class="entry__img d-none">
+                                    <a href="categories.html" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">{{post.category_name }}</a>
+                                </div>
+
+                                <div class="entry__body post-list__body card__body">
+                                    <h2 class="entry__title">
+                                        <a href="/post/{{post.slug}}">{{post.title}}</a>
+                                    </h2>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-author">
+                                            <span>نویسنده:</span>
+                                            <a href="#">{{post.athoder_name}}</a>
+                                        </li>
+                                        
+                                        <li class="entry__meta-date">
+                                            {{post.date}}  
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                            
+                        </div> <!-- end post -->
+                        {% endfor %}
+
+                    </div> <!-- end col -->
+                    
+                    <div class="col-lg-6">
+                            {% for post in top_two_articles %}
+                            
+                            <div class="featured-posts-grid__item featured-posts-grid__item--sm">
+                            
+                            <article class="entry card post-list featured-posts-grid__entry">
+                                <div class="entry__img-holder post-list__img-holder card__img-holder" style="background-image: url( {{post.title_photo }})">
+                                    <a href="single-post.html" class="thumb-url"></a>
+                                    <img src="{{post.title_photo}}" alt="" class="entry__img d-none">
+                                    <a href="categories.html" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet">{{post.category_name }}</a>
+                                </div>
+
+                                <div class="entry__body post-list__body card__body">
+                                    <h2 class="entry__title">
+                                        <a href="/post/{{post.slug}}">{{post.title}}</a>
+                                    </h2>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-author">
+                                            <span>نویسنده:</span>
+                                            <a href="#">{{post.athoder_name}}</a>
+                                        </li>
+                                        
+                                        <li class="entry__meta-date">
+                                            {{post.date}}  
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                            
+                        </div> <!-- end post -->
+                            {% endfor %}
+                    </div>
+                    
+                </div>
+            </div>
+        </section> <!-- end featured posts grid -->
+
+        <div class="main-container container pt-24" id="main-container">
+
+            <!-- Content -->
+            <div class="row">
+
+                <!-- Posts -->
+                <div class="col-lg-8 blog__content">
+
+                    <!-- Latest News -->
+                    <section class="section tab-post mb-16">
+                        <div class="title-wrap title-wrap--line">
+                            <h3 class="section-title">انتخاب مدیر</h3>
+                        </div>
+
+                        <!-- tab content -->
+                        <div class="tabs__content tabs__content-trigger tab-post__tabs-content">
+
+                            <div class="tabs__content-pane tabs__content-pane--active" id="tab-all">
+                                <div class="row card-row">
+                                <!-- moshkel -->
+                                
+                                {% for post in my_select.articles_selected.all %}
+            
+                                    <div class="col-md-6">
+                                        <article class="entry card">
+                                            <div class="entry__img-holder card__img-holder">
+                                                <a href="/post/{{post.slug}}">
+                                                    <div class="thumb-container thumb-70">
+                                                        <img data-src="{{post.title_photo}}" src=" {% static 'img/empty.png' %}" class="entry__img lazyload" alt="" />
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="entry__meta-category entry__meta-category--label entry__meta-category--align-in-corner entry__meta-category--violet"> {{post.category_name}} </a>
+                                            </div>
+
+                                            <div class="entry__body card__body">
+                                                <div class="entry__header">
+
+                                                    <h2 class="entry__title">
+                                                        <a href="/post/{{post.slug}}">{{post.title}}</a>
+                                                    </h2>
+                                                    <ul class="entry__meta">
+                                                        <li class="entry__meta-author">
+                                                            <span>نویسنده:</span>
+                                                            <a href="#">{{post.athoder_name}}</a>
+                                                        </li>
+                                                        <li class="entry__meta-date">
+                                                            {{post.date}}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div> <!-- end pane 1 -->
+                        </div> <!-- end tab content -->
+                    </section> <!-- end latest news -->
+
+                </div> <!-- end posts -->
+
+                <!-- Sidebar -->
+                <aside class="col-lg-4 sidebar sidebar--right">
+
+                    <!-- Widget Popular Posts -->
+                    <aside class="widget widget-popular-posts">
+                        <h4 class="widget-title" style='color : black;'>مقالات اخیر</h4>
+                        <ul class="post-list-small">
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-100">
+                                            <a href="single-post.html">
+                                                <img data-src="{{article_1.title_photo}}" src="{% static 'img/empty.png' %}" alt="" class="post-list-small__img--rounded lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="/post/{{article_1.slug}}">{{article_1}}</a>
+                                        </h3>
+                                        <ul class="entry__meta">
+                                            <li class="entry__meta-author">
+                                                <span>نویسنده:</span>
+                                                <a href="#">{{article_1.athoder_name}}</a>
+                                            </li>
+                                            <li class="entry__meta-date">
+                                                {{article_1.date}} 
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article>
+                            </li>
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-100">
+                                            <a href="single-post.html">
+                                                <img data-src="{{article_2.title_photo}}" src="{% static '/img/empty.png' %}" alt="" class="post-list-small__img--rounded lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="/post/{{article_2.slug}}">{{article_2}}</a>
+                                        </h3>
+                                        <ul class="entry__meta">
+                                            <li class="entry__meta-author">
+                                                <span>نویسنده:</span>
+                                                <a href="#">{{article_2.athoder_name}}</a>
+                                            </li>
+                                            <li class="entry__meta-date">
+                                                {{article_2.date}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article>
+                            </li>
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-100">
+                                            <a href="single-post.html">
+                                                <img data-src="{{article_3.title_photo}}" src="{% static 'img/empty.png' %}" alt="" class="post-list-small__img--rounded lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="/post/{{article_3.slug}}">{{article_3}}</a>
+                                        </h3>
+                                        <ul class="entry__meta">
+                                            <li class="entry__meta-author">
+                                                <span>نویسنده:</span>
+                                                <a href="#">{{article_3.athoder_name}}</a>
+                                            </li>
+                                            <li class="entry__meta-date">
+                                                {{article_3.date}}  
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article>
+                            </li>
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-100">
+                                            <a href="single-post.html">
+                                                <img data-src="{{article_4.title_photo}}" src="{% static 'img/empty.png' %}" alt="" class="post-list-small__img--rounded lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="/post/{{article_4.slug}}">{{article_4}}</a>
+                                        </h3>
+                                        <ul class="entry__meta">
+                                            <li class="entry__meta-author">
+                                                <span>نویسنده:</span>
+                                                <a href="#">{{article_4.athoder_name}}</a>
+                                            </li>
+                                            <li class="entry__meta-date">
+                                                {{article_4.date}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </article>
+                            </li>
+                        </ul>
+                    </aside> <!-- end widget popular posts -->
+
+                    <!-- Widget Newsletter -->
+                    <aside class="widget widget_mc4wp_form_widget">
+                        <h4 class="widget-title" style='color: black;'>خبرنامه</h4>
+                        <p class="newsletter__text">
+                            <i class="ui-email newsletter__icon"></i>
+                            برای اطلاع از آخرین خبرها مشترک شوید
+                        </p>
+                        <form class="mc4wp-form" method="post">
+                            <div class="mc4wp-form-fields">
+                                <div class="form-group">
+                                    <input type="email" name="EMAIL" placeholder="ایمیل" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-lg btn-color" value="عضویت">
+                                </div>
+                            </div>
+                        </form>
+                    </aside> <!-- end widget newsletter -->
+
+                    <!-- Widget Ad 300 -->
+                    <aside class="widget widget_media_image">
+                        <a href="#">
+                            <img src="{% static 'img/content/mag-1.jpg' %}" alt="">
+                        </a>
+                    </aside> <!-- end widget ad 300 -->
+
+                </aside> <!-- end sidebar -->
+
+            </div> <!-- end content -->
+
+            <!-- Ad Banner 728 -->
+            <div class="text-center pb-48">
+                <a href="#">
+                    <img src="{% static 'img/content/cinema-banner.jpg' %}" alt="">
+                </a>
+            </div>
+
+
+
+
+            <!-- Content Secondary -->
+            <div class="row">
+
+                <!-- Posts -->
+                <div class="col-lg-8 blog__content mb-72">
+
+                
+                </div> <!-- end posts -->
+
+                <!-- Sidebar 1 -->
+                <aside class="col-lg-12 sidebar sidebar--1 sidebar--right">
+
+                    <!-- Widget Categories -->
+                    <aside class="widget widget_categories">
+                        <h4 class="widget-title" style='color: black;'>دسته بندی نوشته ها</h4>
+                        <ul>
+                            {% for cat in all_cats %}
+
+                                <li><a href="categories.html">{{cat}}</a><li>
+
+                            {% endfor %}
+                        </ul>
+                    </aside> <!-- end widget categories -->
+
+                    <!-- Widget Recommended (Rating) -->
+                    <aside class="widget widget-rating-posts">
+                        <h4 class="widget-title" style='color: black;'>منتخب سردبیر</h4>
+                        <article class="entry">
+                            <div class="entry__img-holder">
+                                <a href="single-post.html">
+                                    <div class="thumb-container thumb-60">
+                                        <img data-src=" {% static '' %}img/content/thumb/post-9.jpg" src=" {% static '' %}img/empty.png" class="entry__img lazyload" alt="">
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="entry__body">
+                                <div class="entry__header">
+
+                                    <h2 class="entry__title">
+                                        <a href="single-post.html">بهترین کتاب‌های کودک و نوجوان برای تربیت فرزندان موفق</a>
+                                    </h2>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-author">
+                                            <span>نویسنده:</span>
+                                            <a href="#">بهرامی راد</a>
+                                        </li>
+                                        <li class="entry__meta-date">
+                                            ۴ اردیبهشت ۱۳۹۸
+                                        </li>
+                                    </ul>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-rating">
+                                            <i class="ui-star"></i>
+                                            <!--
+                      --><i class="ui-star"></i>
+                                            <!--
+                      --><i class="ui-star"></i>
+                                            <!--
+                      --><i class="ui-star"></i>
+                                            <!--
+                      --><i class="ui-star-empty"></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="entry">
+                            <div class="entry__img-holder">
+                                <a href="single-post.html">
+                                    <div class="thumb-container thumb-60">
+                                        <img data-src=" {% static '' %}img/content/thumb/post-8.jpg" src=" {% static '' %}img/empty.png" class="entry__img lazyload" alt="">
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="entry__body">
+                                <div class="entry__header">
+
+                                    <h2 class="entry__title">
+                                        <a href="single-post.html">گوشی تاشو هواوی میت ایکس در تاریخ مقرر عرضه می‌شود</a>
+                                    </h2>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-author">
+                                            <span>نویسنده:</span>
+                                            <a href="#">بهرامی راد</a>
+                                        </li>
+                                        <li class="entry__meta-date">
+                                            ۴ اردیبهشت ۱۳۹۸
+                                        </li>
+                                    </ul>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-rating">
+                                            <i class="ui-star"></i>
+                                            <!--
+                      --><i class="ui-star"></i>
+                                            <!--
+                      --><i class="ui-star"></i>
+                                            <!--
+                      --><i class="ui-star"></i>
+                                            <!--
+                      --><i class="ui-star-empty"></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    </aside> <!-- end widget recommended (rating) -->
+                </aside> <!-- end sidebar 1 -->
+            </div> <!-- content secondary -->
+
+
+        </div> <!-- end main container -->
+{% endblock main %}

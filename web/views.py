@@ -8,10 +8,6 @@ from .models import Category
 
 from random import randrange
 
-def NoDataError():
-    return HttpResponse("no data in database")
-
-
 def normalize_upload_path(article_obj):
     try:
         for i in article_obj:
@@ -28,7 +24,6 @@ def normalize_upload_path(article_obj):
             article.update(title_photo=str(true_path))
 
 def select_random_obj(data_base_name,num_for_return):
-    
     article_all = Articles.objects.all()
     count = Articles.objects.count()
     numbers = []
@@ -48,7 +43,6 @@ def select_random_obj(data_base_name,num_for_return):
     return articles_select
 
 def index(request):
-    
     # get 4 last article for show in widget popular posts
     All_article = Articles.objects.all()
     count_article = len(All_article)
